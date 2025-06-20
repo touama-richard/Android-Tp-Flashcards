@@ -15,15 +15,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.tp_flashcard.ui.theme.TP_FlashcardTheme
 
 class MainActivity : ComponentActivity() {
 
     private val homeViewModel : HomeViewModel by viewModels()
+    private val flashcardViewModel : FlashcardViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +36,8 @@ class MainActivity : ComponentActivity() {
                             .consumeWindowInsets(innerPadding)
                             .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal + WindowInsetsSides.Vertical)),
                     ) {
-                        AppNavHost(homeViewModel = homeViewModel)
+                        AppNavHost(homeViewModel = homeViewModel,
+                            flashcardViewModel = flashcardViewModel)
                     }
                 }
             }

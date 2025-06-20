@@ -19,6 +19,4 @@ class HomeViewModel: ViewModel() {
         flashcarduistate = FlashcardUiState(0,flashcards)
     }
 
-
-
 }
