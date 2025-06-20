@@ -20,8 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.NavHost
@@ -30,7 +33,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.tp_flashcard.model.FlashCardCategory
 import com.example.tp_flashcard.ui.theme.Blue
 import com.example.tp_flashcard.ui.theme.Gray
+import com.example.tp_flashcard.ui.theme.Red
 import com.example.tp_flashcard.ui.theme.Green
+import com.example.tp_flashcard.ui.theme.Purple
+import com.example.tp_flashcard.ui.theme.Yellow
 
 @Composable
 fun AppNavHost ( homeViewModel : HomeViewModel, flashcardViewModel : FlashcardViewModel ) {
@@ -73,7 +79,13 @@ fun HomeScreen(
 
     ) {
         Text(
-            "FlashCards App",
+            buildAnnotatedString {
+                "FlashCards App".forEachIndexed { index, char ->
+                    withStyle(style = SpanStyle(color = listOf(Red, Yellow, Green, Blue, Purple)[index % 5])) {
+                        append(char)
+                    }
+                }
+            },
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
